@@ -67,7 +67,7 @@ services:
     restart: unless-stopped
     labels:
       traefik.enable: "true"
-      traefik.docker.network: traefik_web
+      traefik.docker.network: traefik
       traefik.http.routers.backend-api.rule: "Host(`${DOMAIN_NAME}`) && PathPrefix(`/api`)"
       traefik.http.routers.backend-api.tls: "true"
       traefik.http.routers.backend-api.tls.certresolver: myresolver
@@ -96,7 +96,7 @@ services:
     restart: unless-stopped
     labels:
       traefik.enable: "true"
-      traefik.docker.network: traefik_web
+      traefik.docker.network: traefik
       traefik.http.routers.client.rule: Host(`${DOMAIN_NAME}`)
       traefik.http.routers.client.tls: "true"
       traefik.http.routers.client.tls.certresolver: myresolver
