@@ -68,7 +68,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: traefik
-      traefik.http.routers.backend-api.rule: "Host(`yourdomain.com`) && PathPrefix(`/api`)"
+      traefik.http.routers.backend-api.rule: "Host(`${DOMAIN_NAME}`) && PathPrefix(`/api`)"
       traefik.http.routers.backend-api.tls: "true"
       traefik.http.routers.backend-api.tls.certresolver: myresolver
       traefik.http.services.backend-api.loadbalancer.server.port: 3001
@@ -97,7 +97,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: traefik
-      traefik.http.routers.client.rule: Host(`yourdomain.com`)
+      traefik.http.routers.client.rule: Host(`${DOMAIN_NAME}`)
       traefik.http.routers.client.tls: "true"
       traefik.http.routers.client.tls.certresolver: myresolver
       traefik.http.services.client.loadbalancer.server.port: 3002
