@@ -72,8 +72,8 @@ services:
       traefik.http.routers.backend-api.tls: "true"
       traefik.http.routers.backend-api.tls.certresolver: myresolver
       traefik.http.services.backend-api.loadbalancer.server.port: 3001
-      traefik.http.middlewares.strip-api-prefix.stripprefix.prefixes: /api
-      traefik.http.routers.backend-api.middlewares: strip-api-prefix
+   #   traefik.http.middlewares.strip-api-prefix.stripprefix.prefixes: /api
+   #   traefik.http.routers.backend-api.middlewares: strip-api-prefix
       traefik.http.routers.backend-api.priority: 2
 
   client:
