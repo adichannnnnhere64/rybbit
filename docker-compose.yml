@@ -92,7 +92,7 @@ services:
       - NEXT_PUBLIC_BACKEND_URL=${BASE_URL}
       - NEXT_PUBLIC_DISABLE_SIGNUP=${DISABLE_SIGNUP}
     depends_on:
-      - backend
+      - rybitt-backend
     restart: unless-stopped
     labels:
       traefik.enable: "true"
