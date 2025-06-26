@@ -38,7 +38,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
 
-  backend:
+  rybitt-backend:
     image: ghcr.io/rybbit-io/rybbit-backend:${IMAGE_TAG:-latest}
     build:
       context: ./server
@@ -76,7 +76,7 @@ services:
    #   traefik.http.routers.backend-api.middlewares: strip-api-prefix
       traefik.http.routers.backend-api.priority: 2
 
-  client:
+  rybitt-client:
     image: ghcr.io/rybbit-io/rybbit-client:${IMAGE_TAG:-latest}
     networks:
       track:
