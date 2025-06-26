@@ -35,7 +35,7 @@ services:
     networks:
       track:
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - postgres-data-2:/var/lib/postgresql/data
     restart: unless-stopped
 
   rybitt-backend:
@@ -65,16 +65,6 @@ services:
       postgres:
         condition: service_started
     restart: unless-stopped
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: traefik_web
-      traefik.http.routers.backend-api.rule: "Host(`${DOMAIN_NAME}`) && PathPrefix(`/api`)"
-      traefik.http.routers.backend-api.tls: "true"
-      traefik.http.routers.backend-api.tls.certresolver: myresolver
-      traefik.http.services.backend-api.loadbalancer.server.port: 3001
-   #   traefik.http.middlewares.strip-api-prefix.stripprefix.prefixes: /api
-   #   traefik.http.routers.backend-api.middlewares: strip-api-prefix
-      traefik.http.routers.backend-api.priority: 2
 
   rybitt-client:
     image: ghcr.io/rybbit-io/rybbit-client:${IMAGE_TAG:-latest}
@@ -94,18 +84,11 @@ services:
     depends_on:
       - rybitt-backend
     restart: unless-stopped
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: traefik_web
-      traefik.http.routers.client.rule: Host(`${DOMAIN_NAME}`)
-      traefik.http.routers.client.tls: "true"
-      traefik.http.routers.client.tls.certresolver: myresolver
-      traefik.http.services.client.loadbalancer.server.port: 3002
-      traefik.http.routers.client.priority: 1
+
 
 volumes:
   clickhouse-data:
-  postgres-data:
+  postgres-data-2:
 networks:
   track:
   traefik:
